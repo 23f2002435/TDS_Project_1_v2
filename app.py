@@ -596,7 +596,7 @@ def parse_llm_response(response):
         }
 
 # Define API routes
-@app.post("/query")
+@app.post("/api/")
 async def query_knowledge_base(request: QueryRequest):
     try:
         # Log the incoming request
@@ -726,3 +726,7 @@ async def health_check():
 
 if __name__ == "__main__":
     uvicorn.run("app:app", host="0.0.0.0", port=8000, reload=True) 
+
+@app.get("/")
+async def root():
+    return {"message": "Welcome to the TDS Virtual TA API. Use POST /api/ to ask questions."}
